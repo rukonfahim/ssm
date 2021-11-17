@@ -1,0 +1,3 @@
+[flake8]
+ignore=B008,E501
+per-file-ignores=shared/mwss/*/__init__.py:F401

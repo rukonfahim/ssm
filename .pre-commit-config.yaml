@@ -1,0 +1,37 @@
+default_stages: [commit]
+repos:
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: isort
+        language: system
+        types: [ python ]
+        args: [ --settings-path=pyproject.toml ]
+
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types: [ python ]
+
+      - id: flake8
+        name: flake8
+        entry: flake8
+        language: system
+        types: [ python ]
+
+      - id: bandit
+        name: bandit
+        entry: bandit
+        language: system
+        types: [ python ]
+        args: [-c=.bandit.yaml]
+
+  - repo: https://github.com/jorisroovers/gitlint
+    rev:  v0.16.0
+    hooks:
+      - id: gitlint
+        entry: gitlint
+        args: [ --msg-filename ]
+        stages: [ commit-msg ]
