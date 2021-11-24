@@ -31,9 +31,9 @@ services:
       - redis
 
   verfiy_rabbitmq:
-    image: rabbitmq:3.8.18-alpine
+    image: rabbitmq:3.8.23
     ports:
-    - "56721:5672"
+    - "5674:5672"
     env_file:
       - .env
 
@@ -43,7 +43,7 @@ services:
       context: .
       dockerfile: ./selfservice/Dockerfile
     ports:
-      - "9000:9000"
+      - "9001:9000"
     volumes:
       - .:/code
     environment:
@@ -67,16 +67,16 @@ services:
       - redis
 
   selfservice_rabbitmq:
-    image: rabbitmq:3.8.18-alpine
+    image: rabbitmq:3.8.23
     ports:
-      - "56722:5672"
+      - "5673:5672"
     env_file:
       - .env
 
   redis:
-    image: redis:6.2.4-alpine
+    image: redis:6.2.6
     ports:
-      - "6379:6379"
+      - "6380:6379"
     env_file:
       - .env
     command: redis-server --requirepass ${REDIS_PASS}
@@ -87,7 +87,7 @@ services:
     env_file:
       - .env
     ports:
-      - "27017:27017"
+      - "27019:27017"
     volumes:
       - ./data:/data/db
 
